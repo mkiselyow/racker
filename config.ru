@@ -1,19 +1,18 @@
-# require './lib/custom_header'
-# require './lib/welcome'
-require './lib/racker'
+$LOAD_PATH << '.'
+require 'rack'
+require 'tilt'
 
-# app = Rack::Builder.new do
-#   use Rack::Welcome
-#   use Rack::CustomHeader
-#   run proc { |env| [200, { 'Content-Type' => 'text/plain' }, ['Hello!']] }
-# end
+require 'lib/frack'
 
-# run app
+require 'app/controllers/users_controller'
 
-# class Racker
-#   def call(env)
-#     Rack::Response.new('We use Rack::Response! Yay!')
-#   end
-# end
+require 'app/models/user'
 
-run Racker
+use Rack::Static, urls: ['/stylesheets', '/javascript', '/images'], root: 'public'
+use Rack::CommonLogger
+use Rack::ContentLength
+use Rack::Reloader, 0
+use Frack::Router do 
+  match '/' => 'users#index'
+end
+run Frack::Application

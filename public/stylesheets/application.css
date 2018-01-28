@@ -1,0 +1,41 @@
+body {
+  background-color: #4B7399;
+  font-family: Verdana;
+  font-size: 14px;
+}
+
+#container {
+  width: 75%;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 20px 40px;
+  border: solid 1px black;
+  margin-top: 20px;
+}
+
+a {
+  color: #0000FF;
+}
+
+.page_not_found {
+  text-align: center;
+}
+
+.bolder_header {
+  font-size: 32pt;
+  font-weight: bolder;
+}
+
+.bold_text {
+  font-size: 24pt;
+  font-weight: bold;
+  color: silver;
+}
+
+.lighter_title_text {
+  font-weight: lighter;
+}
+
+.normal_text {
+  font-weight: normal;  
+}
