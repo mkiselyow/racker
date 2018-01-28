@@ -5,7 +5,13 @@ module Frack
 
       def call(env)
         self.env = env
-        Rack::Response.new(*dispatch)
+        request = Rack::Request.new(env)
+        p request.params['answer']
+        response = Rack::Response.new(*dispatch)
+        response.set_cookie('answer', request.params['answer'])
+        p response['answer']
+        p response.headers
+        response
       end
 
       def dispatch
