@@ -6,14 +6,20 @@ module Frack
       def call(env)
         self.env = env
         @request = Rack::Request.new(env)
-        @response = Rack::Response.new(*dispatch)
+        @response = Rack::Response.new(*dispatch(env))
+        # p "env ======= #{env}" if @request.params['answer']
         @response.set_cookie('answer', @request.params['answer'])
-        @response.redirect('/games/started') if @request.params['answer']
+        # p "@request.params['answer'] ======= #{@request.params['answer']}" if @request.params['answer']
+        # @response.redirect('/games/started') if @request.params['answer']
+        # p "env ======= #{env}" if @request.params['answer']
+        # p "env[\"rack.request.form_hash\] ======= #{env["rack.request.form_hash['answer']"]}" if @request.params['answer']
+        # p "env[\"rack.request.rack.request.form_input\] ======= #{env["rack.request.rack.request.form_input"]}" if @request.params['answer']
+        # p "@request.params ======= #{@request.params}" if @request.params['answer']
         @response
       end
 
-      def dispatch
-        controller.new.public_send(env['action'])
+      def dispatch(env)
+        controller.new.public_send(env['action'], env)
       end
 
       def controller
