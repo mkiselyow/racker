@@ -13,5 +13,9 @@ module Frack
     def file(path)
       Dir[File.join('app', 'views', "#{path}.html.*")].first
     end
+
+    # def params
+    #   Rack::Request.new(env).params
+    # end
   end
 end

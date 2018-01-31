@@ -5,13 +5,11 @@ module Frack
 
       def call(env)
         self.env = env
-        request = Rack::Request.new(env)
-        p request.params['answer']
-        response = Rack::Response.new(*dispatch)
-        response.set_cookie('answer', request.params['answer'])
-        p response['answer']
-        p response.headers
-        response
+        @request = Rack::Request.new(env)
+        @response = Rack::Response.new(*dispatch)
+        @response.set_cookie('answer', @request.params['answer'])
+        @response.redirect('/games/started') if @request.params['answer']
+        @response
       end
 
       def dispatch

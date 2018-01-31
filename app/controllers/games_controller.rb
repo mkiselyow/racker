@@ -12,6 +12,8 @@ class GamesController < Frack::BaseController
   end
 
   def attempt_to_guess
+    # p self.class.methods
+    p request
     render 'games/attempt_to_guess'
   end
 end

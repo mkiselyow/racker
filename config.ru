@@ -18,7 +18,7 @@ use Frack::Router do
   match '/' => 'users#index'
   match '/games' => 'games#index'
   match '/games/started' => 'games#start_new_game'
-  match '/games/attempt_to_guess' => 'games#attempt_to_guess'
+  match '/attempt_to_guess' => 'games#attempt_to_guess'
 end
 use Rack::Session::Pool
 run Frack::Application

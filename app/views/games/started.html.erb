@@ -3,8 +3,10 @@
 <div><%= @game.methods %></div>
 <div><%= @game.secret_code %></div>
 
-<form action="attempt_to_guess" method="post">
+<form action="/attempt_to_guess" method="post">
   <p><b>Your input attempt</b></p>
   <p><input type="text" name="answer" placeholder="4 digit number"></p>
   <p><input type="submit" class="submit_btn"></p>
 </form>
+
+<h2>Last Answer was <%= @answer %></h2>
