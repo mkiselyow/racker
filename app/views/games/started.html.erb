@@ -10,3 +10,6 @@
 </form>
 
 <h2>Last Answer was <%= @answer %></h2>
+<h2>Last Hint was <%= @game.hints.last if @game.hints %></h2>
+
+<h2>Last Game Status is <%= @game.is_this_winning_game if @game.is_this_winning_game %></h2>

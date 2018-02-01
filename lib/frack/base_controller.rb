@@ -17,5 +17,13 @@ module Frack
     def params(env)
       Rack::Request.new(env).params
     end
+
+    def request(env)
+      Rack::Request.new(env)
+    end
+
+    def response(env)
+      Rack::Response.new(env)
+    end
   end
 end
