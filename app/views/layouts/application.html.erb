@@ -5,6 +5,14 @@
 </head>
 <body>
   <h1>application#layout</h1>
+  <nav>
+    <div><a class="btn" href="/games">Welcome Page</a></div>
+    <div><a class="btn" href="/history">Show History</a></div>
+    <div><a class="btn" href="/games/started">Start the new game</a></div>
+</nav>
+  <h2>
+    <%= @error if @error %>
+  </h2>
   <%= yield %>
 </body>
 </html>

@@ -1,7 +1,5 @@
 <h1> games#started </h1>
 <div><%= @game %></div>
-<div><%= @game.methods %></div>
-<div><%= @game.secret_code %></div>
 
 <form action="/attempt_to_guess" method="post">
   <p><b>Your input attempt</b></p>
@@ -10,6 +8,6 @@
 </form>
 
 <h2>Last Answer was <%= @answer %></h2>
-<h2>Last Hint was <%= @game.hints.last if @game.hints %></h2>
+<h2>Last Hint was <%= @game.hints.last if @game %></h2>
 
-<h2>Last Game Status is <%= @game.is_this_winning_game if @game.is_this_winning_game %></h2>
+<h2>Have you won the game? <%= @game.is_this_winning_game if @game %></h2>
