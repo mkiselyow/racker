@@ -1,0 +1,13 @@
+<h1> games#started </h1>
+<div><%= @game %></div>
+
+<form action="/attempt_to_guess" method="post">
+  <p><b>Your input attempt</b></p>
+  <p><input type="text" name="answer" placeholder="4 digit number"></p>
+  <p><input type="submit" class="submit_btn"></p>
+</form>
+
+<h2>Last Answer was <%= @answer %></h2>
+<h2>Last Hint was <%= @game.hints.last if @game %></h2>
+
+<h2>Have you won the game? <%= @game.is_this_winning_game if @game %></h2>

@@ -1,19 +1,28 @@
-# require './lib/custom_header'
-# require './lib/welcome'
-require './lib/racker'
+$LOAD_PATH << '.'
+require 'rack'
+require 'tilt'
 
-# app = Rack::Builder.new do
-#   use Rack::Welcome
-#   use Rack::CustomHeader
-#   run proc { |env| [200, { 'Content-Type' => 'text/plain' }, ['Hello!']] }
-# end
+require 'lib/frack'
 
-# run app
+require 'app/controllers/users_controller'
+require 'app/controllers/games_controller'
+require 'app/controllers/history_controller'
 
-# class Racker
-#   def call(env)
-#     Rack::Response.new('We use Rack::Response! Yay!')
-#   end
-# end
+require 'app/models/user'
+require 'app/models/game'
+require 'app/models/history'
 
-run Racker
+use Rack::Static, urls: ['/stylesheets', '/javascript', '/images'], root: 'public'
+use Rack::CommonLogger
+use Rack::ContentLength
+use Rack::Reloader, 0
+use Frack::Router do 
+  match '/' => 'users#index'
+  match '/users/index' => 'users#index'
+  match '/games' => 'games#index'
+  match '/history' => 'history#index'
+  match '/games/started' => 'games#start_new_game'
+  match '/attempt_to_guess' => 'games#attempt_to_guess'
+end
+use Rack::Session::Pool
+run Frack::Application

@@ -1,0 +1,8 @@
+<h2>history#index</h2>
+<ul>
+  <% if @history_played_games %>
+    <% @history_played_games.each do |game| %>
+      <li><%= game.to_s %></li>
+    <% end %>
+  <% end %>
+</ul>
